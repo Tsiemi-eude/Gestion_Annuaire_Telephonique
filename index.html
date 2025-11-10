@@ -16,8 +16,6 @@
       <input id="searchInput" type="search" placeholder="Rechercher nom, téléphone, email..." aria-label="Recherche contacts" />
       <button id="btnAdd" class="btn primary" type="button">Ajouter</button>
       <button id="btnExport" class="btn" type="button">Exporter</button>
-
-      <!-- Import accessible -->
       <label class="btn file-btn" for="importFile" role="button" tabindex="0">Importer</label>
       <input id="importFile" type="file" accept="application/json" hidden />
     </div>
@@ -33,18 +31,33 @@
       </div>
       <div class="help">
         <h4>Astuce</h4>
-        <p>Utilisez la recherche pour filtrer rapidement, cliquez sur une carte pour éditer.</p>
+        <p>Utilisez la recherche pour filtrer rapidement. Cliquez “Modifier” pour éditer, “Supprimer” pour effacer.</p>
       </div>
     </aside>
 
     <section class="contacts-section">
-      <div id="contactsList" class="contacts-grid" aria-live="polite">
-        <!-- Cartes générées en JS -->
+      <div class="table-wrapper card">
+        <table class="contacts-table" aria-label="Tableau des contacts">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Téléphone</th>
+              <th>Email</th>
+              <th>Adresse</th>
+              <th style="min-width:140px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="contactsTbody">
+            <!-- Lignes injectées en JS -->
+          </tbody>
+        </table>
       </div>
     </section>
   </main>
 
-  <!-- Modal -->
+  <!-- Modal (ajout / modification) -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
       <button id="modalClose" class="modal-close" aria-label="Fermer" type="button">&times;</button>
@@ -90,28 +103,6 @@
     </div>
   </div>
 
-  <!-- Template -->
-  <template id="contactCardTemplate">
-    <article class="contact-card" data-id="">
-      <div class="card-left">
-        <div class="avatar-wrapper">
-          <img class="avatar" src="" alt="Photo contact" />
-        </div>
-      </div>
-      <div class="card-body">
-        <h3 class="contact-name"></h3>
-        <p class="contact-phone"></p>
-        <p class="contact-email"></p>
-        <p class="contact-address"></p>
-      </div>
-      <div class="card-actions">
-        <button class="btn ghost btn-edit" type="button">Modifier</button>
-        <button class="btn danger btn-delete" type="button">Supprimer</button>
-      </div>
-    </article>
-  </template>
-
-  <!-- IMPORTANT: garder defer pour garantir que le DOM existe au chargement -->
   <script src="script.js" defer></script>
 </body>
 </html>
