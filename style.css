@@ -1,0 +1,88 @@
+/* Thème clair et professionnel */
+:root {
+  --primary: #3498db;
+  --dark: #2c3e50;
+  --light: #ecf0f1;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+  --radius: 8px;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ----- HEADER ----- */
+.app-header {
+  background: var(--dark);
+  color: var(--white);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.app-header nav button {
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  padding: 8px 14px;
+  margin-left: 10px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.app-header nav button:hover {
+  background: #2980b9;
+}
+
+/* ----- SEARCH BAR ----- */
+.search-section {
+  background: var(--white);
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px var(--shadow);
+}
+
+.search-section input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+}
+
+/* ----- CONTACTS LIST ----- */
+.contacts-container {
+  flex: 1;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #888;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 0.9rem;
+}
