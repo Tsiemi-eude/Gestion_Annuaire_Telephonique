@@ -1,34 +1,108 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Annuaire Téléphonique - Nouvelle Version</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Annuaire Téléphonique</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="app-header">
-    <h1>📞 Annuaire Téléphonique</h1>
-    <nav>
-      <button id="btn-add">➕ Nouveau Contact</button>
-      <button id="btn-import">📥 Importer</button>
-      <button id="btn-export">📤 Exporter</button>
-    </nav>
+    <div class="header-left">
+      <h1>Annuaire Téléphonique</h1>
+      <p class="subtitle">Gestion moderne de vos contacts</p>
+    </div>
+    <div class="header-actions">
+      <input id="searchInput" type="search" placeholder="Rechercher nom, téléphone, email..." aria-label="Recherche contacts" />
+      <button id="btnAdd" class="btn primary" type="button">Ajouter</button>
+      <button id="btnExport" class="btn" type="button">Exporter</button>
+      <label class="btn file-btn" for="importFile" role="button" tabindex="0">Importer</label>
+      <input id="importFile" type="file" accept="application/json" hidden />
+    </div>
   </header>
 
-  <section class="search-section">
-    <input type="text" id="searchInput" placeholder="🔍 Rechercher un contact...">
-  </section>
+  <main class="container">
+    <aside class="sidebar">
+      <div class="card new-contact-card">
+        <div class="new-contact-info">
+          <h3>Vos contacts</h3>
+          <p id="contactsCount">0 contacts</p>
+        </div>
+      </div>
+      <div class="help">
+        <h4>Astuce</h4>
+        <p>Utilisez la recherche pour filtrer rapidement. Cliquez “Modifier” pour éditer, “Supprimer” pour effacer.</p>
+      </div>
+    </aside>
 
-  <main class="contacts-container">
-    <div class="empty-state">
-      <p>Aucun contact pour le moment.</p>
-    </div>
+    <section class="contacts-section">
+      <div class="table-wrapper card">
+        <table class="contacts-table" aria-label="Tableau des contacts">
+          <thead>
+            <tr>
+              <th>Photo</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Téléphone</th>
+              <th>Email</th>
+              <th>Adresse</th>
+              <th style="min-width:140px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="contactsTbody">
+            <!-- Lignes injectées en JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <p>© 2025 - Annuaire Téléphonique | Interface améliorée</p>
-  </footer>
+  <!-- Modal (ajout / modification) -->
+  <div id="modal" class="modal" aria-hidden="true">
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="modalClose" class="modal-close" aria-label="Fermer" type="button">&times;</button>
+      <h2 id="modalTitle">Ajouter un contact</h2>
+
+      <form id="contactForm" class="form" novalidate>
+        <input type="hidden" id="contactId" />
+
+        <label>Nom
+          <input id="lastName" type="text" required />
+        </label>
+
+        <label>Prénom
+          <input id="firstName" type="text" required />
+        </label>
+
+        <label>Téléphone
+          <input id="phone" type="tel" pattern="[0-9+ ()-]{4,}" required />
+        </label>
+
+        <label>Email
+          <input id="email" type="email" />
+        </label>
+
+        <label>Adresse
+          <input id="address" type="text" />
+        </label>
+
+        <label class="file-input-label">Photo de profil
+          <input id="photoInput" type="file" accept="image/*" />
+        </label>
+
+        <div class="preview-row">
+          <img id="photoPreview" src="" alt="Aperçu photo" hidden />
+          <button id="clearPhoto" type="button" class="btn ghost" hidden>Supprimer photo</button>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Enregistrer</button>
+          <button id="cancelBtn" type="button" class="btn">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
