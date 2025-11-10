@@ -1,121 +1,33 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Annuaire Téléphonique</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Annuaire Téléphonique - Nouvelle Version</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="app-header">
-    <div class="header-left">
-      <h1>Annuaire Téléphonique</h1>
-      <p class="subtitle">Gestion moderne de vos contacts</p>
-    </div>
-    <div class="header-actions">
-      <input id="searchInput" type="search" placeholder="Rechercher nom, téléphone, email..." aria-label="Recherche contacts" />
-      <button id="btnAdd" class="btn primary">Ajouter</button>
-      <button id="btnExport" class="btn">Exporter</button>
-      <label class="btn file-btn" for="importFile">Importer</label>
-      <input id="importFile" type="file" accept="application/json" style="display:none" />
-    </div>
+    <h1>📞 Annuaire Téléphonique</h1>
+    <nav>
+      <button id="btn-add">➕ Nouveau Contact</button>
+      <button id="btn-import">📥 Importer</button>
+      <button id="btn-export">📤 Exporter</button>
+    </nav>
   </header>
 
-  <main class="container">
-    <aside class="sidebar">
-      <div class="card new-contact-card">
-        <img src="" alt="" class="placeholder" hidden>
-        <div class="new-contact-info">
-          <h3>Vos contacts</h3>
-          <p id="contactsCount">0 contacts</p>
-        </div>
-      </div>
-      <div class="help">
-        <h4>Astuce</h4>
-        <p>Utilisez la recherche pour filtrer rapidement, cliquez sur une carte pour éditer.</p>
-      </div>
-    </aside>
+  <section class="search-section">
+    <input type="text" id="searchInput" placeholder="🔍 Rechercher un contact...">
+  </section>
 
-    <section class="contacts-section">
-      <div id="contactsList" class="contacts-grid" aria-live="polite">
-        <!-- Cartes de contacts insérées dynamiquement -->
-      </div>
-    </section>
+  <main class="contacts-container">
+    <div class="empty-state">
+      <p>Aucun contact pour le moment.</p>
+    </div>
   </main>
 
-  <!-- Modal formulaire (ajout / modification) -->
-  <div id="modal" class="modal" aria-hidden="true">
-    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <button id="modalClose" class="modal-close" aria-label="Fermer">&times;</button>
-      <h2 id="modalTitle">Ajouter un contact</h2>
-
-      <form id="contactForm" class="form">
-        <input type="hidden" id="contactId" />
-
-        <label>
-          Nom
-          <input id="lastName" type="text" required />
-        </label>
-
-        <label>
-          Prénom
-          <input id="firstName" type="text" required />
-        </label>
-
-        <label>
-          Téléphone
-          <input id="phone" type="tel" pattern="[0-9+ ()-]{4,}" required />
-        </label>
-
-        <label>
-          Email
-          <input id="email" type="email" />
-        </label>
-
-        <label>
-          Adresse
-          <input id="address" type="text" />
-        </label>
-
-        <label class="file-input-label">
-          Photo de profil
-          <input id="photoInput" type="file" accept="image/*" />
-        </label>
-
-        <div class="preview-row">
-          <img id="photoPreview" src="" alt="Aperçu photo" hidden />
-          <button id="clearPhoto" type="button" class="btn ghost" hidden>Supprimer photo</button>
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" class="btn primary">Enregistrer</button>
-          <button id="cancelBtn" type="button" class="btn">Annuler</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Template (invisible) -->
-  <template id="contactCardTemplate">
-    <article class="contact-card">
-      <div class="card-left">
-        <div class="avatar-wrapper">
-          <img class="avatar" src="" alt="Photo contact" />
-        </div>
-      </div>
-      <div class="card-body">
-        <h3 class="contact-name"></h3>
-        <p class="contact-phone"></p>
-        <p class="contact-email"></p>
-        <p class="contact-address"></p>
-      </div>
-      <div class="card-actions">
-        <button class="btn ghost btn-edit">Modifier</button>
-        <button class="btn danger btn-delete">Supprimer</button>
-      </div>
-    </article>
-  </template>
-
-  <script src="script.js" defer></script>
+  <footer>
+    <p>© 2025 - Annuaire Téléphonique | Interface améliorée</p>
+  </footer>
 </body>
 </html>
